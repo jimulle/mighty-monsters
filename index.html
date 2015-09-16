@@ -6,10 +6,53 @@
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 
   <link rel="stylesheet" type="text/css" href="styles.css">
+
+  <script src="angular_1.2.1.js"></script>
+
+  <script src="creature.js"></script>
+  <script src="moves.js"></script>
   <script src="main.js"></script>
+
 
 </head>
 <body>
+
+<div class="main-app-frame" ng-app="mm" ng-controller="mmctrl">
+
+<div class="monsters-container">
+
+  <div class="monster">
+    <img src="{{micky.imageUrl}}" width="50" height="50" />
+    <h2>{{micky.name}}</h2>
+    <p>
+      level : {{micky.level}}<br/>
+      experience : {{micky.experience}}<br/>
+      hp : {{micky.hp}} / {{micky.maxHp}}<br/>
+    </p>
+    <button ng-repeat="move in micky.moves track by $index" ng-click="micky.fight(goober, $index);" ng-disabled="!move.capacity || !micky.status || !goober.status">{{move.name}} ({{move.capacity}}/{{move.maxCapacity}})</button>
+  </div>
+
+  <div class="monster">
+    <img src="{{goober.imageUrl}}" width="50" height="50" />
+    <h2>{{goober.name}}</h2>
+    <p>
+      level : {{goober.level}}<br/>
+      <span ng-show="goober.status">
+        experience : {{goober.experience}}<br/>
+        hp : {{goober.hp}} / {{goober.maxHp}}<br/>
+      </span>
+      <span class="red" ng-hide="goober.status">FAINTED</span>
+    </p>
+    <button ng-repeat="move in goober.moves track by $index" ng-click="goober.fight(micky, $index);" ng-disabled="!move.capacity || !micky.status || !goober.status">{{move.name}} ({{move.capacity}}/{{move.maxCapacity}})</button>
+  </div>
+
+</div>
+
+  <div class="messages">
+    <div ng-class="{bold: $first}" ng-repeat="msg in (output | reverse | limitTo: 5) track by $index">{{msg}}</div>
+  </div>
+
+</div>
 
 </body>
 </html>

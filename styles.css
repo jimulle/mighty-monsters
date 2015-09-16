@@ -1,0 +1,59 @@
+* {
+  box-sizing: border-box;
+}
+
+.main-app-frame {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+
+.red { color: red; }
+
+div.monsters-container {
+  width: 100%;
+  float: none;
+  clear: both;
+}
+div.monsters-container:after {
+  content:"";
+  display:table;
+  clear:both;
+}
+
+div.monster {
+  width: calc(50% - 5px);
+  float: left;
+  background: #e6e6e6;
+  padding: 10px;
+}
+div.monster:nth-child(odd) {
+  margin-right: 5px;
+}
+div.monster:nth-child(even) {
+  margin-left: 5px;
+}
+
+
+div.monster button {
+  display: block;
+  margin-bottom: 5px;
+}
+
+div.messages {
+  width: 100%;
+  background: #e6e6e6;
+  padding: 10px;
+  min-height: 10px;
+  margin-top: 10px;
+}
+
+div.messages div {
+  color: #c6c6c6;
+}
+div.messages div.bold {
+  color: #a6a6a6;
+  font-weight: bold;
+  float: none;
+  clear: both;
+}

@@ -1,68 +1,46 @@
-var jim = {
-  id : 0000001,
-  name : 'jim',
-  experience : 0,
-  level : 1,
-  creatures : [],
-  battle : function(opponent){
-    console.log("battle: " + this.creatures[0].name + " vs " + opponent.name);
+var mm = angular.module('mm', []);
 
-    while (this.creatures[0].damage < this.creatures[0].stats.health && opponent.damage < opponent.stats.health) {
-        if(usemove(this.creatures[0], opponent, this.creatures[0].moves.bite)) break;
-        if(usemove(opponent, this.creatures[0], opponent.moves.scratch)) break;
-    }
+mm.controller('mmctrl', ['$scope', function($scope){
 
-    console.log("battle stats: " + this.creatures[0].name + " : " + (this.creatures[0].stats.health - this.creatures[0].damage) + " and " + opponent.name + " : " + (opponent.stats.health - opponent.damage));
-  }
-};
+$scope.micky = Object.create(Creature.prototype);
+$scope.micky.init({
+  name:"micky monstar",
+  imageUrl:"http://icons.iconarchive.com/icons/spoon-graphics/monster/512/Blue-Monster-icon.png",
+  experience:0,
+  nextLevelExp:150,
+  level:1,
+  hp:100,
+  attack:50,
+  defense:30,
+  speed:65,
+  moves:[
+    { name:'kersmash', damage:8, capacity:20 },
+    { name:'smile', damage:0, capacity:5 }
+  ]
+});
 
-var creature1 = {
-  id : 0001,
-  name : 'one',
-  experience : 0,
-  level : 1,
-  types : [],
-  damage : 0,
-  status : '',
-  stats : {
-    accuracy : 0,
-    attack : 0,
-    defense : 0,
-    health : 20,
-    speed : 0,
-  },
-  moves : {
-    bite : { name : 'bite', text : 'used bite.', damage : 5 }
-  }
-};
+$scope.goober = Object.create(Creature.prototype);
+$scope.goober.init({
+  name:"goober",
+  imageUrl:"http://1.bp.blogspot.com/--7QyK1OOq9c/T2Ou-kqKZQI/AAAAAAAAAlk/Y455Rps6vPY/s1600/greenslimemonster.jpg",
+  experience:55,
+  level:1,
+  hp:10,
+  attack:50,
+  defense:30,
+  speed:65,
+  moves:[
+    { name:'snot', damage:2, capacity:25 },
+    { name:'slog', damage:5, capacity:2 }
+  ]
+});
 
-var creature2 = {
-  id : 0002,
-  name : 'two',
-  experience : 0,
-  level : 1,
-  types : [],
-  damage : 0,
-  status : '',
-  stats : {
-    accuracy : 0,
-    attack : 0,
-    defense : 0,
-    health : 20,
-    speed : 0,
-  },
-  moves : {
-    scratch : { name : 'scratch', text : 'used scratch.', damage : 3 }
-  }
-};
+$scope.output = messages;
 
-function usemove(attacker, opponent, move) {
-  console.log(attacker.name + " " + move.text);
-  opponent.damage += move.damage;
-  if(opponent.damage >= opponent.stats.health) { console.log(opponent.name + " fainted!"); return 1; }
-  else { return 0; }
-}
+}]);
 
-//main
-jim.creatures.push(creature1);
-jim.battle(creature2);
+mm.filter('reverse', function() {
+  return function(items) {
+    return items.slice().reverse();
+  };
+});
