@@ -1,0 +1,68 @@
+//TODO
+//Start with creating 1 player, 1 creature and 4 moves
+//Build out basic battle in which user selects a move and attacks other creature
+
+
+
+
+
+
+
+
+
+
+
+//models
+
+player = {
+  id : 9999999,
+  name : 'jim',
+  experience : 0,
+  level : 1,
+  creatures : [],
+
+};
+
+creature = {
+  id : 9999999,
+  name : '',
+  experience : 0,
+  level : 1,
+  types : [],
+  damage : 0,
+  status : '',
+  stats : [
+    accuracy : 0,
+    attack : 0,
+    defense : 0,
+    health : 0,
+    speed : 0,
+  ],
+  moves : [
+    1 : 00000,
+    2 : 00000,
+    3 : 00000,
+    4 : 00000
+  ],
+
+};
+
+move = {
+  id : 00000,
+  name : '',
+  description : '',
+  announcement : '',
+  type : ''
+  power : 0,
+
+};
+
+type = {
+  name : '',
+  id : 000000,
+  effective : [],
+  supereffective : [],
+  ineffective : [],
+  noeffect : [],
+
+};

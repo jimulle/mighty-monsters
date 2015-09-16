@@ -1,0 +1,68 @@
+var jim = {
+  id : 0000001,
+  name : 'jim',
+  experience : 0,
+  level : 1,
+  creatures : [],
+  battle : function(opponent){
+    console.log("battle: " + this.creatures[0].name + " vs " + opponent.name);
+
+    while (this.creatures[0].damage < this.creatures[0].stats.health && opponent.damage < opponent.stats.health) {
+        if(usemove(this.creatures[0], opponent, this.creatures[0].moves.bite)) break;
+        if(usemove(opponent, this.creatures[0], opponent.moves.scratch)) break;
+    }
+
+    console.log("battle stats: " + this.creatures[0].name + " : " + (this.creatures[0].stats.health - this.creatures[0].damage) + " and " + opponent.name + " : " + (opponent.stats.health - opponent.damage));
+  }
+};
+
+var creature1 = {
+  id : 0001,
+  name : 'one',
+  experience : 0,
+  level : 1,
+  types : [],
+  damage : 0,
+  status : '',
+  stats : {
+    accuracy : 0,
+    attack : 0,
+    defense : 0,
+    health : 20,
+    speed : 0,
+  },
+  moves : {
+    bite : { name : 'bite', text : 'used bite.', damage : 5 }
+  }
+};
+
+var creature2 = {
+  id : 0002,
+  name : 'two',
+  experience : 0,
+  level : 1,
+  types : [],
+  damage : 0,
+  status : '',
+  stats : {
+    accuracy : 0,
+    attack : 0,
+    defense : 0,
+    health : 20,
+    speed : 0,
+  },
+  moves : {
+    scratch : { name : 'scratch', text : 'used scratch.', damage : 3 }
+  }
+};
+
+function usemove(attacker, opponent, move) {
+  console.log(attacker.name + " " + move.text);
+  opponent.damage += move.damage;
+  if(opponent.damage >= opponent.stats.health) { console.log(opponent.name + " fainted!"); return 1; }
+  else { return 0; }
+}
+
+//main
+jim.creatures.push(creature1);
+jim.battle(creature2);
