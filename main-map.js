@@ -49,10 +49,15 @@ mm.controller('mm-mapctrl', ['$scope', function($scope){
       };
     },
     move : {
-      left : function() { if($scope.player.location.column > 0) { $scope.player.location.column--; } },
+      left : function() {
+        if($scope.player.location.column > 0) {
+          console.log('left');
+          $scope.player.location.column--;
+        }
+      },
       right : function() { if($scope.player.location.column < ($scope.map[0].length - 1)){ $scope.player.location.column++; } },
       up : function() { if($scope.player.location.row > 0) { $scope.player.location.row--; } },
-      down : function() { if($scope.player.location.row < ($scope.map.length - 1)){$scope.player.location.row++; } }
+      down : function() { if($scope.player.location.row < ($scope.map.length - 1)){$scope.player.location.row++; } },
     },
     img : 'http://www.bluebomber.com/sprites/sub2/images/megaman008.gif'
   };
