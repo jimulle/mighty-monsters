@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>mm map</title>
+
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+
+  <link rel="stylesheet" type="text/css" href="styles.css">
+
+  <script src="angular_1.2.1.js"></script>
+
+  <script src="main-map.js"></script>
+
+
+</head>
+<body>
+
+  <div class="main-app-frame" ng-app="mm" ng-controller="mm-mapctrl">
+    <div style="position: relative;">
+      <div class="row" style="width: 100%;" ng-repeat="row in map track by $index">
+        <div id="{{$parent.$index}}-{{$index}}" style="float: left; width: 26px; height: 26px; background: url({{tiles[cell].img}}); background-size: 26px 26px;" ng-repeat="cell in row track by $index">
+        </div>
+        <div style="float: none; clear: both;"></div>
+      </div>
+      <img class="player" style="width: 26px; width: 26px; position: absolute; z-index: 999;" ng-style="player.position()" ng-src="{{player.img}}" />
+      {{player.location.column}}:{{player.location.row}}
+    </div>
+    <div class="nav">
+      <div style="width: 50%;">
+        <button ng-click="player.move.up()">up</button>
+        <button ng-click="player.move.left()">left</button>
+        <button ng-click="player.move.right()">right</button>
+        <button ng-click="player.move.down()">down</button>
+      </div>
+      <div style="width: 50%;"></div>
+    </div>
+  </div>
+
+</body>
+</html>
